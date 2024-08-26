@@ -21,29 +21,29 @@ spec:
     - name: escalate
       match:
         any:
-        - resources:
-            kinds:
-              - Role
-              - ClusterRole
+          - resources:
+              kinds:
+                - Role
+                - ClusterRole
       validate:
         message: "Use of verbs `escalate`, `bind`, and `impersonate` are forbidden."
         foreach:
-        - list: "request.object.rules[]"
-          deny:
-            conditions:
-              all:
-              - key: "{{ element.apiGroups || '' }}"
-                operator: AnyIn
-                value:
-                - rbac.authorization.k8s.io
-              - key: "{{ element.resources || '' }}"
-                operator: AnyIn
-                value:
-                - clusterroles
-                - roles
-              - key: "{{ element.verbs }}"
-                operator: AnyIn
-                value:
-                - bind
-                - escalate
-                - impersonate
+          - list: "request.object.rules[]"
+            deny:
+              conditions:
+                all:
+                  - key: "{{ element.apiGroups || '' }}"
+                    operator: AnyIn
+                    value:
+                      - rbac.authorization.k8s.io
+                  - key: "{{ element.resources || '' }}"
+                    operator: AnyIn
+                    value:
+                      - clusterroles
+                      - roles
+                  - key: "{{ element.verbs }}"
+                    operator: AnyIn
+                    value:
+                      - bind
+                      - escalate
+                      - impersonate

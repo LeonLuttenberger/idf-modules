@@ -19,15 +19,15 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-ingress
-    match:
-      any:
-      - resources:
-          kinds:
-          - Ingress
-    validate:
-      message: "Unknown ingress class."
-      pattern:
-        metadata:
-          annotations:
-            kubernetes.io/ingress.class: "alb | nginx"
+    - name: validate-ingress
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+      validate:
+        message: "Unknown ingress class."
+        pattern:
+          metadata:
+            annotations:
+              kubernetes.io/ingress.class: "alb | nginx"

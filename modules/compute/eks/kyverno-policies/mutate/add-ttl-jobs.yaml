@@ -21,9 +21,9 @@ spec:
     - name: add-ttlSecondsAfterFinished
       match:
         any:
-        - resources:
-            kinds:
-              - Job
+          - resources:
+              kinds:
+                - Job
       preconditions:
         any:
           - key: "{{ request.object.metadata.ownerReferences || `[]` }}"

@@ -28,4 +28,3 @@ targetAccountMappings:
     regionMappings:
       - region: us-west-2
         default: true
-

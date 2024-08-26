@@ -21,14 +21,14 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: restrict-ingress-defaultbackend
-    match:
-      any:
-      - resources:
-          kinds:
-          - Ingress
-    validate:
-      message: Setting the defaultBackend field is prohibited.
-      pattern:
-        spec:
-          X(defaultBackend): "null"
+    - name: restrict-ingress-defaultbackend
+      match:
+        any:
+          - resources:
+              kinds:
+                - Ingress
+      validate:
+        message: Setting the defaultBackend field is prohibited.
+        pattern:
+          spec:
+            X(defaultBackend): "null"

@@ -19,20 +19,20 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-resources
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: "CPU and memory resource requests and limits are required."
-      pattern:
-        spec:
-          containers:
+    - name: validate-resources
+      match:
+        any:
           - resources:
-              requests:
-                memory: "?*"
-                cpu: "?*"
-              limits:
-                memory: "?*"
+              kinds:
+                - Pod
+      validate:
+        message: "CPU and memory resource requests and limits are required."
+        pattern:
+          spec:
+            containers:
+              - resources:
+                  requests:
+                    memory: "?*"
+                    cpu: "?*"
+                  limits:
+                    memory: "?*"

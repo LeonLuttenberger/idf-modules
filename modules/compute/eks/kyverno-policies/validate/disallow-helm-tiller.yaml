@@ -21,9 +21,9 @@ spec:
     - name: validate-helm-tiller
       match:
         any:
-        - resources:
-            kinds:
-              - Pod
+          - resources:
+              kinds:
+                - Pod
       validate:
         message: "Helm Tiller is not allowed"
         pattern:

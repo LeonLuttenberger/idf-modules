@@ -22,12 +22,12 @@ spec:
     - name: clusteradmin-bindings
       match:
         any:
-        - resources:
-            kinds:
-              - RoleBinding
-              - ClusterRoleBinding
+          - resources:
+              kinds:
+                - RoleBinding
+                - ClusterRoleBinding
       validate:
         message: "Binding to cluster-admin is not allowed."
         pattern:
-          roleRef: 
+          roleRef:
             name: "!cluster-admin"

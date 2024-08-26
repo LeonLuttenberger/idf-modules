@@ -14,4 +14,3 @@ targetAccountMappings:
     regionMappings:
       - region: us-east-1
         default: true
-

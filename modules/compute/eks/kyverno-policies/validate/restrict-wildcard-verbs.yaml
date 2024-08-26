@@ -23,15 +23,15 @@ spec:
     - name: wildcard-verbs
       match:
         any:
-        - resources:
-            kinds:
-              - Role
-              - ClusterRole
+          - resources:
+              kinds:
+                - Role
+                - ClusterRole
       validate:
         message: "Use of a wildcard ('*') in any verbs is forbidden."
         deny:
           conditions:
             any:
-            - key: "{{ contains(request.object.rules[].verbs[], '*') }}"
-              operator: Equals
-              value: true
+              - key: "{{ contains(request.object.rules[].verbs[], '*') }}"
+                operator: Equals
+                value: true

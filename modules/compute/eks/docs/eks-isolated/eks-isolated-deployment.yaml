@@ -29,7 +29,7 @@ targetAccountMappings:
           securityGroupIds:
             - sg-XXXXXXXX
         # these networking values will be used for seedfarmer's codebuild environment
-        network: 
+        network:
           vpcId:
             valueFrom:
               parameterValue: vpcId

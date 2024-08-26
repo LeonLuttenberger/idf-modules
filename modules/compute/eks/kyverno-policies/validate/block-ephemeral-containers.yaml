@@ -19,14 +19,14 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: block-ephemeral-containers
-    match:
-      any:
-      - resources:
-          kinds:
-            - Pod
-    validate:
-      message: "Ephemeral (debug) containers are not permitted."
-      pattern:
-        spec:
-          X(ephemeralContainers): "null"
+    - name: block-ephemeral-containers
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Ephemeral (debug) containers are not permitted."
+        pattern:
+          spec:
+            X(ephemeralContainers): "null"

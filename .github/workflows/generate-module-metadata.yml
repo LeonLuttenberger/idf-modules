@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version of codebase to generate metadata for, x.y.z'     
+        description: 'Version of codebase to generate metadata for, x.y.z'
         required: true
 
 permissions:

@@ -20,25 +20,25 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-probes
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: "Liveness, readiness, or startup probes are required for all containers."
-      foreach:
-      - list: request.object.spec.containers[]
-        deny:
-          conditions:
-            all:
-            - key: livenessProbe
-              operator: AllNotIn
-              value: "{{ element.keys(@)[] }}"
-            - key: startupProbe
-              operator: AllNotIn
-              value: "{{ element.keys(@)[] }}"
-            - key: readinessProbe
-              operator: AllNotIn
-              value: "{{ element.keys(@)[] }}"
+    - name: validate-probes
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Liveness, readiness, or startup probes are required for all containers."
+        foreach:
+          - list: request.object.spec.containers[]
+            deny:
+              conditions:
+                all:
+                  - key: livenessProbe
+                    operator: AllNotIn
+                    value: "{{ element.keys(@)[] }}"
+                  - key: startupProbe
+                    operator: AllNotIn
+                    value: "{{ element.keys(@)[] }}"
+                  - key: readinessProbe
+                    operator: AllNotIn
+                    value: "{{ element.keys(@)[] }}"

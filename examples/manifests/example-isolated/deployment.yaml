@@ -29,7 +29,7 @@ targetAccountMappings:
           securityGroupIds:
             - sg-XXXXXXXXX
           myTestRegionParam: HeyHereIAmRegional
-        network: 
+        network:
           vpcId:
             valueFrom:
               parameterValue: vpcId

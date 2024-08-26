@@ -16,15 +16,15 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: no-localhost-service
-    match:
-      any:
-      - resources:
-          kinds:
-          - Service
-    validate:
-      message: "Service of type ExternalName cannot point to localhost."
-      pattern:
-        spec:
-          (type): ExternalName
-          externalName: "!localhost"
+    - name: no-localhost-service
+      match:
+        any:
+          - resources:
+              kinds:
+                - Service
+      validate:
+        message: "Service of type ExternalName cannot point to localhost."
+        pattern:
+          spec:
+            (type): ExternalName
+            externalName: "!localhost"

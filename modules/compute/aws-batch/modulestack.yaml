@@ -33,7 +33,7 @@ Resources:
               - "iam:CreateServiceLinkedRole"
             Effect: Allow
             Resource:
-               - !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/*.amazonaws.com/*"
+              - !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/*.amazonaws.com/*"
         Version: 2012-10-17
       PolicyName: modulespecific-policy
       Roles: [!Ref RoleName]

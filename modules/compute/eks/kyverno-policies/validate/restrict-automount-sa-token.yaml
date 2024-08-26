@@ -18,19 +18,19 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-automountServiceAccountToken
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    preconditions:
-      all:
-      - key: "{{ request.\"object\".metadata.labels.\"app.kubernetes.io/part-of\" || '' }}"
-        operator: NotEquals
-        value: policy-reporter
-    validate:
-      message: "Auto-mounting of Service Account tokens is not allowed."
-      pattern:
-        spec:
-          automountServiceAccountToken: "false"
+    - name: validate-automountServiceAccountToken
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      preconditions:
+        all:
+          - key: "{{ request.\"object\".metadata.labels.\"app.kubernetes.io/part-of\" || '' }}"
+            operator: NotEquals
+            value: policy-reporter
+      validate:
+        message: "Auto-mounting of Service Account tokens is not allowed."
+        pattern:
+          spec:
+            automountServiceAccountToken: "false"

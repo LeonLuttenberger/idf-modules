@@ -23,15 +23,15 @@ spec:
     - name: wildcard-resources
       match:
         any:
-        - resources:
-            kinds:
-              - Role
-              - ClusterRole
+          - resources:
+              kinds:
+                - Role
+                - ClusterRole
       validate:
         message: "Use of a wildcard ('*') in any resources is forbidden."
         deny:
           conditions:
             any:
-            - key: "{{ contains(request.object.rules[].resources[], '*') }}"
-              operator: Equals
-              value: true
+              - key: "{{ contains(request.object.rules[].resources[], '*') }}"
+                operator: Equals
+                value: true

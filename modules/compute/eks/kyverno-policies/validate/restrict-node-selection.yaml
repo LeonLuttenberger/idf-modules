@@ -17,25 +17,25 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: restrict-nodeselector
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: Setting the nodeSelector field is prohibited.
-      pattern:
-        spec:
-          X(nodeSelector): "null"
-  - name: restrict-nodename
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: Setting the nodeName field is prohibited.
-      pattern:
-        spec:
-          X(nodeName): "null"
+    - name: restrict-nodeselector
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: Setting the nodeSelector field is prohibited.
+        pattern:
+          spec:
+            X(nodeSelector): "null"
+    - name: restrict-nodename
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: Setting the nodeName field is prohibited.
+        pattern:
+          spec:
+            X(nodeName): "null"

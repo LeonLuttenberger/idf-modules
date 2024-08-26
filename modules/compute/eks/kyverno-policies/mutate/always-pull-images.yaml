@@ -16,15 +16,15 @@ metadata:
       AlwaysPullImages.
 spec:
   rules:
-  - name: always-pull-images
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    mutate:
-      patchStrategicMerge:
-        spec:
-          containers:
-          - (name): "?*"
-            imagePullPolicy: Always
+    - name: always-pull-images
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      mutate:
+        patchStrategicMerge:
+          spec:
+            containers:
+              - (name): "?*"
+                imagePullPolicy: Always

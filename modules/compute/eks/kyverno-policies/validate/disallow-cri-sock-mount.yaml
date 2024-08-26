@@ -17,42 +17,42 @@ spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: validate-docker-sock-mount
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: "Use of the Docker Unix socket is not allowed."
-      pattern:
-        spec:
-          =(volumes):
-            - =(hostPath):
-                path: "!/var/run/docker.sock"
-  - name: validate-containerd-sock-mount
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: "Use of the Containerd Unix socket is not allowed."
-      pattern:
-        spec:
-          =(volumes):
-            - =(hostPath):
-                path: "!/var/run/containerd.sock"
-  - name: validate-crio-sock-mount
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    validate:
-      message: "Use of the CRI-O Unix socket is not allowed."
-      pattern:
-        spec:
-          =(volumes):
-            - =(hostPath):
-                path: "!/var/run/crio.sock"
+    - name: validate-docker-sock-mount
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Use of the Docker Unix socket is not allowed."
+        pattern:
+          spec:
+            =(volumes):
+              - =(hostPath):
+                  path: "!/var/run/docker.sock"
+    - name: validate-containerd-sock-mount
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Use of the Containerd Unix socket is not allowed."
+        pattern:
+          spec:
+            =(volumes):
+              - =(hostPath):
+                  path: "!/var/run/containerd.sock"
+    - name: validate-crio-sock-mount
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Use of the CRI-O Unix socket is not allowed."
+        pattern:
+          spec:
+            =(volumes):
+              - =(hostPath):
+                  path: "!/var/run/crio.sock"

@@ -16,26 +16,26 @@ spec:
   validationFailureAction: Audit
   background: false
   rules:
-  - name: block-updates-deletes
-    match:
-      any:
-      - resources:
-          kinds:
-          - Service
-          selector:
-            matchLabels:
-              protected: "true"
-    exclude:
-      any:
-      - clusterRoles:
-        - cluster-admin
-    validate:
-      message: "This resource is protected and changes are not allowed. Please seek a cluster-admin."
-      deny:
-        conditions:
-          any:
-            - key: "{{request.operation || 'BACKGROUND'}}"
-              operator: AnyIn
-              value:
-              - DELETE
-              - UPDATE
+    - name: block-updates-deletes
+      match:
+        any:
+          - resources:
+              kinds:
+                - Service
+              selector:
+                matchLabels:
+                  protected: "true"
+      exclude:
+        any:
+          - clusterRoles:
+              - cluster-admin
+      validate:
+        message: "This resource is protected and changes are not allowed. Please seek a cluster-admin."
+        deny:
+          conditions:
+            any:
+              - key: "{{request.operation || 'BACKGROUND'}}"
+                operator: AnyIn
+                value:
+                  - DELETE
+                  - UPDATE

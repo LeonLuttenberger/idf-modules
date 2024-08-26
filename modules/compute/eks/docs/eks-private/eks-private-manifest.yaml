@@ -1,7 +1,7 @@
 name: eks
 path: modules/core/eks/
 dataFiles:
-  - filePath: data/eks_dockerimage-replication/versions/<<EKS_VERSION>>.yaml #replace the EKS_VERSION with the right EKS Cluster version
+  - filePath: data/eks_dockerimage-replication/versions/<<EKS_VERSION>>.yaml  # replace the EKS_VERSION with the right EKS Cluster version
   - filePath: data/eks_dockerimage-replication/versions/default.yaml
 parameters:
   - name: vpc-id
@@ -29,26 +29,26 @@ parameters:
   - name: eks-read-only-role-name
     value: ReadOnly
   - name: eks-version
-    value: 1.29 # Replace the EKS_VERSION inline here or set an env var and load it from `.env` file using below format
+    value: 1.29  # Replace the EKS_VERSION inline here or set an env var and load it from `.env` file using below format
     # valueFrom:
     #   envVariable: GLOBAL_EKS_VERSION
   - name: eks-compute
     value:
       eks_nodegroup_config:
-        - eks_ng_name: ng1 # EKS Managed NodeGroup
+        - eks_ng_name: ng1  # EKS Managed NodeGroup
           eks_node_quantity: 2
           eks_node_max_quantity: 5
           eks_node_min_quantity: 1
           eks_node_disk_size: 20
           eks_node_instance_type: "m5.large"
-        - eks_ng_name: ng2 # EKS Self Managed NodeGroup
+        - eks_ng_name: ng2  # EKS Self Managed NodeGroup
           eks_node_quantity: 1
           eks_node_max_quantity: 5
           eks_node_min_quantity: 1
           eks_node_disk_size: 20
           eks_node_instance_type: "m5.2xlarge"
           eks_self_managed: True
-        - eks_ng_name: ng-gpu # EKS Managed NodeGroup with GPU AMI
+        - eks_ng_name: ng-gpu  # EKS Managed NodeGroup with GPU AMI
           eks_node_quantity: 1
           eks_node_max_quantity: 2
           eks_node_min_quantity: 0
@@ -62,11 +62,11 @@ parameters:
             - key: "nvidia.com/gpu"
               value: "true"
               effect: "NoSchedule"
-              #operator: "Equal"
+              # operator: "Equal"
           install_nvidia_device_plugin: True
       eks_node_spot: False
-      eks_api_endpoint_private: False # This makes the EKS Endpoint PUBLIC by default
-      eks_secrets_envelope_encryption: True 
+      eks_api_endpoint_private: False  # This makes the EKS Endpoint PUBLIC by default
+      eks_secrets_envelope_encryption: True
   - name: eks-addons
     value:
       # Load balancing
@@ -76,17 +76,17 @@ parameters:
         nginx_additional_annotations:
           nginx.ingress.kubernetes.io/whitelist-source-range: "100.64.0.0/10,10.0.0.0/8"
       # DNS
-      deploy_external_dns: False 
+      deploy_external_dns: False
       # Storage drivers
       deploy_aws_ebs_csi: False
-      deploy_aws_efs_csi: False 
+      deploy_aws_efs_csi: False
       deploy_aws_s3_csi: False
       deploy_aws_fsx_csi: False
       # Autoscaling
-      deploy_cluster_autoscaler: True 
+      deploy_cluster_autoscaler: True
       deploy_metrics_server: True
       # Secrets
-      deploy_secretsmanager_csi: False 
+      deploy_secretsmanager_csi: False
       deploy_external_secrets: False
       # Monitoring/Logging/Tracing
       deploy_cloudwatch_observability_addon: True

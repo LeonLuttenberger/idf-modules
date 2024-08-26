@@ -20,31 +20,31 @@ metadata:
       incoming Pod to add this environment variable automatically.
 spec:
   rules:
-  - name: add-log4shell-mitigation-initcontainers
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    mutate:
-      patchStrategicMerge:
-        spec:
-          initContainers:
-            - (name): "*"
-              env:
-              - name: LOG4J_FORMAT_MSG_NO_LOOKUPS
-                value: "true"
-  - name: add-log4shell-mitigation-containers
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    mutate:
-      patchStrategicMerge:
-        spec:
-          containers:
-            - (name): "*"
-              env:
-              - name: LOG4J_FORMAT_MSG_NO_LOOKUPS
-                value: "true"
+    - name: add-log4shell-mitigation-initcontainers
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      mutate:
+        patchStrategicMerge:
+          spec:
+            initContainers:
+              - (name): "*"
+                env:
+                  - name: LOG4J_FORMAT_MSG_NO_LOOKUPS
+                    value: "true"
+    - name: add-log4shell-mitigation-containers
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      mutate:
+        patchStrategicMerge:
+          spec:
+            containers:
+              - (name): "*"
+                env:
+                  - name: LOG4J_FORMAT_MSG_NO_LOOKUPS
+                    value: "true"

@@ -22,7 +22,7 @@ Resources:
           - Action:
               - iam:CreateServiceLinkedRole
             Effect: Allow
-            Resource: 
+            Resource:
               !Sub arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/*
         Version: 2012-10-17
       PolicyName: idf-modulespecific-policy
